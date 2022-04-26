@@ -8,8 +8,8 @@ trigger:
 
 pool:
   # vmImage: ubuntu-latest
-  vmImage: windows-latest
-  # vmImage: macos-latest
+  # vmImage: windows-latest
+  vmImage: macos-latest
 
 steps:
 - task: Maven@3
