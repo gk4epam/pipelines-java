@@ -33,9 +33,9 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Agent.TempDirectory)'
+    SourceFolder: '$(downloadRir)'
     Contents: '**'
-    TargetFolder: '$(workingDir)/packages/digital-chit/.env'
+    TargetFolder: '$(buildDigitalChit)/.env'
 
 - script: |
     echo "print file details"
