@@ -18,5 +18,7 @@ steps:
   
 - script: |
     echo "print file details"
-    cd $(Agent.TempDirectory) 
+    cd $(Agent.TempDirectory)
+    ls -la
+    echo "end of output"
 
