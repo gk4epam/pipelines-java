@@ -8,6 +8,14 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+  
+variables:
+- name: workingDir
+  value: $(Build.SourcesDirectory)
+- name: downloadRir
+  value: $(Agent.TempDirectory)
+- name: buildDigitalChit
+  value: $(workingDir)/packages/digital-chit/
 
 steps:
 - task: DownloadSecureFile@1
@@ -22,3 +30,15 @@ steps:
     ls -la
     echo "end of output"
 
+- task: CopyFiles@2
+  displayName: 'Copy build files to: $(buildDigitalChit)'
+  inputs:
+    Contents: |
+      $(downloadRir)/env
+    TargetFolder: '$(buildDigitalChit)/.env'
+
+- script: |
+    echo "print file details"
+    cd $(buildDigitalChit)
+    ls -la
+    echo "end of output"
