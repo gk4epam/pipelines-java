@@ -26,8 +26,9 @@ steps:
   
 - script: |
     echo "print file details"
-    cd $(Agent.TempDirectory)
+    cd $(downloadRir)
     ls -la
+    mkdir -p $(workingDir)/packages/digital-chit/
     echo "end of output"
 
 - task: CopyFiles@2
