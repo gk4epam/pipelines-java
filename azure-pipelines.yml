@@ -14,5 +14,5 @@ steps:
   name: env
   displayName: ‘Download env file’
   inputs:
-    secureFile: ‘.env’
+    secureFile: ‘env’
 
