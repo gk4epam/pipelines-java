@@ -35,7 +35,7 @@ steps:
   inputs:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: '**'
-    TargetFolder: '$(workingDir)/packages/digital-chit/'
+    TargetFolder: '$(workingDir)/packages/digital-chit/.env'
 
 - script: |
     echo "print file details"
