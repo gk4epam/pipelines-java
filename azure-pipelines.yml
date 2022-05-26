@@ -32,11 +32,10 @@ steps:
     echo "end of output"
 
 - task: CopyFiles@2
-  displayName: 'Copy build files to: $(buildDigitalChit)'
   inputs:
-    Contents: |
-      $(downloadRir)/**
-    TargetFolder: '$(buildDigitalChit)'
+    SourceFolder: '$(Agent.TempDirectory)'
+    Contents: '**'
+    TargetFolder: '$(workingDir)/packages/digital-chit/'
 
 - script: |
     echo "print file details"
