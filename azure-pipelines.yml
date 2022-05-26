@@ -10,6 +10,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: Bash@3
+  displayName: Print Working Directory
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "present working directory"
+      pwd	
+      echo "list all files here"
+      ls -la
+      echo "#### end of script ####"
 - task: DownloadSecureFile@1
   name: env
   displayName: 'Download env file'
