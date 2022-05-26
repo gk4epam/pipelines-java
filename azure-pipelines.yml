@@ -35,7 +35,7 @@ steps:
   displayName: 'Copy build files to: $(buildDigitalChit)'
   inputs:
     Contents: |
-      $(downloadRir)/env
+      $(downloadRir)/**
     TargetFolder: '$(buildDigitalChit)'
 
 - script: |
