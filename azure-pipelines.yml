@@ -28,7 +28,7 @@ steps:
     echo "print file details"
     cd $(downloadRir)
     ls -la
-    mkdir -p $(workingDir)/packages/digital-chit/
+    mkdir -p $(buildDigitalChit)
     echo "end of output"
 
 - task: CopyFiles@2
@@ -36,7 +36,7 @@ steps:
   inputs:
     Contents: |
       $(downloadRir)/env
-    TargetFolder: '$(buildDigitalChit)/.env'
+    TargetFolder: '$(buildDigitalChit)'
 
 - script: |
     echo "print file details"
