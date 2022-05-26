@@ -10,30 +10,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: Bash@3
-  displayName: Print Working Directory Before
-  inputs:
-    targetType: 'inline'
-    script: |
-      echo "present working directory"
-      pwd	
-      echo "list all files here"
-      ls -la
-      echo "#### end of script ####"
 - task: DownloadSecureFile@1
   name: env
   displayName: 'Download env file'
   inputs:
     secureFile: 'env'
   
-- task: Bash@3
-  displayName: Print Working Directory After
-  inputs:
-    targetType: 'inline'
-    script: |
-      echo "present working directory"
-      pwd	
-      echo "list all files here"
-      ls -la
-      echo "#### end of script ####"
+- script: |
+    echo "print file details"
+    cd $(Agent.TempDirectory) 
 
