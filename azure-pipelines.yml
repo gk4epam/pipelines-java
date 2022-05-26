@@ -34,11 +34,12 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(downloadRir)'
-    Contents: '**'
-    TargetFolder: '$(buildDigitalChit)/.env'
+    Contents: 'env'
+    TargetFolder: '$(buildDigitalChit)'
 
 - script: |
     echo "print file details"
     cd $(buildDigitalChit)
+    mv env .env
     ls -la
     echo "end of output"
