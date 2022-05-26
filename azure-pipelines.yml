@@ -11,8 +11,8 @@ pool:
 
 steps:
 - task: DownloadSecureFile@1
-  name: secret
-  displayName: ‘Download env file’
+  name: env
+  displayName: 'Download env file'
   inputs:
-    secureFile: ‘secret.env’
+    secureFile: '.env'
 
