@@ -42,7 +42,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: secret.txt
+    Contents: env_test
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
