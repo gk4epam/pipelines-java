@@ -38,6 +38,7 @@ steps:
         pwd
         ls -ltra
         echo $(Password) > secret.txt
+        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
 
 - task: CopyFiles@2
   inputs:
