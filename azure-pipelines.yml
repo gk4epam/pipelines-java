@@ -32,13 +32,20 @@ steps:
     SecretsFilter: '*'
     RunAsPreJob: false
 
-- task: CmdLine@2
-  inputs:
-    script: |
-        pwd
-        ls -ltra
-        echo $(Password) > secret.txt
-        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
+# - task: CmdLine@2
+#  inputs:
+#    script: |
+#        pwd
+#        ls -ltra
+#        echo $(Password) > secret.txt
+#        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
+
+- script: |
+      echo "print file details"
+      pwd
+      ls -ltra
+      'echo $(Password) > secret.txt'
+  displayName: 'work on the env file'
 
 - task: CopyFiles@2
   inputs:
