@@ -7,6 +7,8 @@ pool:
 variables:
     - name: downloadRir
       value: $(Agent.TempDirectory)
+    - name: workingDir
+      value: $(Build.SourcesDirectory)
 
 steps:
 
@@ -15,6 +17,13 @@ steps:
   displayName: 'Download env_test file'
   inputs:
       secureFile: 'env_test'
+
+- task: CopyFiles@2
+  inputs:
+      SourceFolder: '$(downloadRir)'
+      Contents: 'env_test'
+      TargetFolder: '$(workingDir)'
+  displayName: 'copy env_test file to Build Directory'
 
 - task: AzureKeyVault@2
   inputs:
@@ -27,7 +36,8 @@ steps:
   inputs:
     script: |
         pwd
-        'echo $(Password) > secret.txt'
+        ls -ltra
+        echo $(Password) > secret.txt
 
 - task: CopyFiles@2
   inputs:
