@@ -2,13 +2,6 @@ trigger:
 - main
 
 pool:
-    vmImage: 'ubuntu-latest'
-
-steps:
-trigger:
-- main
-
-pool:
   vmImage: ubuntu-latest
 
 steps:
