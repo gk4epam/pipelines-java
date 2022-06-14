@@ -1,45 +1,35 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
-  
-variables:
-- name: workingDir
-  value: $(Build.SourcesDirectory)
-- name: downloadRir
-  value: $(Agent.TempDirectory)
-- name: buildDigitalChit
-  value: $(workingDir)/packages/digital-chit/
+    vmImage: 'ubuntu-latest'
 
 steps:
-- task: DownloadSecureFile@1
-  name: env
-  displayName: 'Download env file'
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureKeyVault@2
   inputs:
-    secureFile: 'env'
-  
-- script: |
-    echo "print file details"
-    cd $(downloadRir)
-    ls -la
-    mkdir -p $(buildDigitalChit)
-    echo "end of output"
+    azureSubscription: 'Visual Studio Professional Subscription(b2605b44-43b2-45d1-8001-4808eb591e25)'
+    KeyVaultName: 'ctcnonprodcds1306cc-kv'
+    SecretsFilter: '*'
+    RunAsPreJob: false
+
+- task: CmdLine@2
+  inputs:
+    script: 'echo $(Your-Secret-Name) > secret.txt'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(downloadRir)'
-    Contents: 'env'
-    TargetFolder: '$(buildDigitalChit)'
+    Contents: secret.txt
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- script: |
-    echo "print file details"
-    cd $(buildDigitalChit)
-    mv env .env
-    ls -la
-    echo "end of output"
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
