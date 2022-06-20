@@ -32,12 +32,12 @@ steps:
     SecretsFilter: '*'
     RunAsPreJob: false
 
-# - task: CmdLine@2
-#  inputs:
-#    script: |
-#        pwd
-#        ls -ltra
-#        echo $(Password) > secret.txt
+- task: CmdLine@2
+  inputs:
+    script: |
+        pwd
+        ls -ltra
+        echo $(Password) > secret.txt
 #        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
 
 - script: |
@@ -49,7 +49,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: env_test
+    Contents: secret.txt
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
