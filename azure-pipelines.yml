@@ -38,7 +38,7 @@ steps:
         pwd
         ls -ltra
         echo $(Password) > secret.txt
-#        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
+        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
 
 - script: |
       echo "print file details"
@@ -49,7 +49,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: secret.txt
+    Contents: env_test
     targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
