@@ -38,7 +38,10 @@ steps:
         pwd
         ls -ltra
         echo $(Password) > secret.txt
-        sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
+        awk '/REACT_APP_ADMIN_PIN/{$NF="$(adminpin)"} 1' env_test > env_temp && mv env_temp env_test
+        cat env_test
+      ##  sed '/^REACT_APP_ADMIN_PIN /s/=.*$/= $(adminpin)/' env_test
+        
 
 - script: |
       echo "print file details"
